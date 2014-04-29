@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:e="http://entities.br"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="subheader">
+                <h:form>
+                    <rich:toolBar>
+                                               
+<!--                         <rich:dropDownMenu value="Menu">
+                            <rich:menuItem value="Tema :">
+                                <e:themes>
+                                    
+                                 </e:themes>
+                            </rich:menuItem>
+                            <rich:menuItem value="Skin :">
+                                <e:skins/>
+                            </rich:menuItem>
+                        </rich:dropDownMenu>-->
+
+
+                          <rich:dropDownMenu value="Menu">
+<!--                                               
+                              <rich:menuItem title="Início" value="Início">
+                                            <h:outputLink   value="main.jsf"></h:outputLink>
+                                        </rich:menuItem>-->
+                              
+                                        <rich:menuItem rendered="#{empty context.currentUser()}">
+                                            <e:go label="Login" viewname="security.Usuario@Login" page="main.jsf"/>
+                                        </rich:menuItem>
+                              
+                                        <rich:menuItem  rendered="#{not empty context.currentUser()}">
+                                            <e:go label="Logout" viewname="security.Usuario@Logout" page="main.jsf"/>
+                                        </rich:menuItem>
+                         
+                         
+
+                   </rich:dropDownMenu>
+                       
+                       <rich:dropDownMenu value="Dados dos Produtores"  rendered='#{context.currentUser().hasRoles("Tecnico","Administrador")}'>
+                               
+                        
+                                      <rich:menuItem>
+                                            <e:go label="Produtores" viewname="bean.Produtor@ManterProdutor" page="main.jsf"/>
+                                       </rich:menuItem>
+                            
+                                       <rich:menuItem>
+                                            <e:go label="Ordens de Serviço" viewname="bean.OrdemDeServico@OrdemDeServico" page="main.jsf"/>
+                                        </rich:menuItem>
+                           
+                        </rich:dropDownMenu>
+
+                        <rich:dropDownMenu value="Relatórios"  rendered='#{context.currentUser().hasRoles("Administrador")}'>
+                        
+                                      <rich:menuItem>
+                                            <e:go label="Relatórios de Assistência Técnica" viewname="bean.RelatorioAssistenciaTecnica@RATAdmin" page="main.jsf"/>
+                                       </rich:menuItem>
+                            
+                                       <rich:menuItem>
+                                            <e:go label="Mapeamentos de Unidades Produtivas" viewname="bean.MapeamentoDeUnidadesProdutivas@MUPAdmin" page="main.jsf"/>
+                                        </rich:menuItem>
+                                        
+                                        <rich:menuItem>
+                                            <e:go label="Diários de Campo" viewname="bean.DiarioDeCampo@DDCAdmin" page="main.jsf"/>
+                                        </rich:menuItem>
+    
+                          </rich:dropDownMenu>
+                        
+                          <rich:dropDownMenu value="Relatórios"  rendered='#{context.currentUser().hasRoles("Tecnico")}'>
+                        
+                                      <rich:menuItem>
+                                            <e:go label="Relatórios de Assistência Técnica" viewname="bean.RelatorioAssistenciaTecnica@RATUser" page="main.jsf"/>
+                                       </rich:menuItem>
+                            
+                                       <rich:menuItem>
+                                            <e:go label="Mapeamentos de Unidades Produtivas" viewname="bean.MapeamentoDeUnidadesProdutivas@MUPUser" page="main.jsf"/>
+                                        </rich:menuItem>
+                                        
+                                        <rich:menuItem>
+                                            <e:go label="Diários de Campo" viewname="bean.DiarioDeCampo@DDCUser" page="main.jsf"/>
+                                        </rich:menuItem>
+    
+                           </rich:dropDownMenu>   
+
+                          <rich:dropDownMenu value="Usuários"  rendered='#{context.currentUser().hasRoles("Administrador")}'>
+                               
+                                        <rich:menuItem>
+                                            <e:go label="Cadastro de Usuários" viewname="security.Usuario@CadastroDeUsuarios" page="main.jsf"/>
+                                        </rich:menuItem>
+                                     
+                           </rich:dropDownMenu>
+                            
+                           <rich:dropDownMenu value="Outros"  rendered='#{context.currentUser().hasRoles("Administrador")}'>
+                               
+                        
+                                      <rich:menuItem>
+                                            <e:go label="Ações" viewname="bean.Acao@Adicionar" page="main.jsf"/>
+                                        </rich:menuItem>
+                                        
+                                        <rich:menuItem>
+                                            <e:go label="Distritos" viewname="bean.Distrito@Adicionar" page="main.jsf"/>
+                                        </rich:menuItem>
+                                        
+                                        <rich:menuItem>
+                                            <e:go label="Localidades" viewname="bean.Localidade@Adicionar" page="main.jsf"/>
+                                        </rich:menuItem>
+                               
+                                        <rich:menuItem>
+                                            <e:go label="Propriedades" viewname="bean.Propriedade@Adicionar" page="main.jsf"/>
+                                        </rich:menuItem>
+                               
+                                        <rich:menuItem>
+                                            <e:go label="Projetos" viewname="bean.Projeto@Adicionar" page="main.jsf"/>
+                                        </rich:menuItem>
+                                                    
+                                        <rich:menuItem>
+                                            <e:go label="Renda Familiar" viewname="bean.RendaFamiliar@Adicionar" page="main.jsf"/>
+                                        </rich:menuItem>
+                                        
+                           
+                           </rich:dropDownMenu>
+
+                           
+
+<rich:toolBarGroup location="right" rendered="#{not empty context.currentUser()}">
+         <h:outputText value="Usuário: #{context.currentUser().userName()}" />
+</rich:toolBarGroup> 
+      <rich:toolBarGroup location="right"  
+                         rendered="#{not empty context.currentUser()}">
+          <div align="right">
+            <h:outputLink value="main.jsf">
+               <h:graphicImage id="sair_img" value="/img/518008.png" />
+              <f:param name="view" value="security.Usuario@Logout" />
+           </h:outputLink>
+          </div>
+      </rich:toolBarGroup>
+
+                    </rich:toolBar>
+                </h:form>
+            </ui:define>
+                
+
+         
+
+            
+            <ui:define name="content">
+                <h:panelGroup rendered="#{empty autoEntityBackBean.entity}">
+                    <br/><br/>
+                    <div class="post">
+                        <center>
+                            <br></br>
+                            <h1 class="title"></h1>
+                            <h:graphicImage url="img/logo.jpg"/>
+                            <div class="entry">
+                            
+                                
+                                
+                            </div>
+                        </center>
+                    </div>
+                    <br/><br/>
+                </h:panelGroup>
+
+                <e:view />
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>
