@@ -1,0 +1,33 @@
+Configuração para uso de data source JNDI definido no Tomcat
+
+1. Copiar o driver do PostgreSQl para o diretório de libs do Tomcat
+
+2. Alterar o arquivo server.xml do Tomcat
+
+
+(...)
+<GlobalNamingResources>
+		(...)
+		<!-- Acrescentar as seguintes linhas, lembrando de modificar o usuario e senha -->
+		<Resource auth="Container" driverClassName="org.postgresql.Driver"
+			maxActive="10" maxIdle="3" maxWait="10000" name="jdbc/safdr" 
+			type="javax.sql.DataSource" url="jdbc:postgresql://localhost/SAFDR"	<!-- Nome do banco -->
+			username="postgres" password="postgres" /> 	<!-- Login e senha do PostgreSQL -->
+</GlobalNamingResources>
+(...)
+
+
+3. Alterar o arquivo context.xml do Tomcat
+
+
+<Context>
+	(...)
+
+	<ResourceLink global="jdbc/safdr" name="jdbc/safdr"
+		type="javax.sql.DataSource" />	
+	(...)
+</Context>
+
+
+Para mais informações acesse o tutorial completo: 
+https://docs.google.com/document/d/1CY91FXYw4W3xp7MbRF9gIF4yj5fHeeZPFtQPCMtnIDY/pub#h.f5qtqh69eb8v
