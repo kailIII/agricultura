@@ -7,14 +7,19 @@ import entities.annotations.*;
 import entities.dao.DAOConstraintException;
 import entities.dao.DAOException;
 import entities.dao.DAOValidationException;
+import entities.descriptor.PropertyType;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.*;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
+
 import security.Usuario;
 import util.jsf.Types;
 /**
@@ -52,7 +57,8 @@ import util.jsf.Types;
     title = "Produtores",
     filters="[nomeCompleto,codigo,Ctrl.DAO.filter()]", 
     members = "[["
-    + "Dados do Produtor[codigo;"
+    + "Dados do Produtor[foto;"
+    + "			codigo;"
     + "         nomeCompleto;"
     + "         distrito;"
     + "         localidade;"
@@ -124,6 +130,11 @@ public class Produtor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
+    
+    @Lob
+    @Column(length=10240) // 10kb
+    @Editor(propertyType=PropertyType.IMAGE)
+    private byte[] foto;
 
     @NotEmpty(message = "Informe o nome do Produtor")
     @Column(length = 60)
@@ -549,7 +560,15 @@ public class Produtor implements Serializable {
         this.tipoDeMoradia = tipoDeMoradia;
     }
     
-  @ActionDescriptor(componenteType= Types.COMMAND_LINK,value="Ver Produtor")
+    public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+@ActionDescriptor(componenteType= Types.COMMAND_LINK,value="Ver Produtor")
     public String verProdutor() {
         Context.setValue("codigo", this.getCodigo());
       
