@@ -131,6 +131,8 @@ public class Produtor implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
     
+    
+    // Campo de foto
     @Lob
     @Column(length=10240) // 10kb
     @Editor(propertyType=PropertyType.IMAGE)
