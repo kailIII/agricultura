@@ -36,7 +36,8 @@ import security.Usuario;
     template = "@CRUD_PAGE",  
       params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "localidade", value = "#{dataItem.localidade}")},
     title = "Relatórios de Assistência Técnica",
-    roles="Administrador"),
+    roles="Administrador",
+    rows = 10),
 
     @View(name = "RATUser", filters="[distrito,produtor,produtor.cpf,data,Ctrl.DAO.filter()]", 
             members = "[["
@@ -52,7 +53,8 @@ import security.Usuario;
     title = "Relatórios de Assistência Técnica",
     roles="Tecnico",
     namedQuery="Select ot From RelatorioAssistenciaTecnica ot where ot.tecnico = :tecnico",
-     params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "tecnico", value = "#{context.currentUser()}")}),
+     params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "tecnico", value = "#{context.currentUser()}")},
+     rows = 10),
     
 })
 public class RelatorioAssistenciaTecnica implements Serializable {

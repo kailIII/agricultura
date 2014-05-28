@@ -98,7 +98,8 @@ import util.jsf.Types;
         ,
      params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "localidade", value = "#{dataItem.localidade}")},
     template = "@CRUD_PAGE",    
-    roles="Administrador,Tecnico"
+    roles="Administrador,Tecnico",
+    rows = 10
      )})
 
 

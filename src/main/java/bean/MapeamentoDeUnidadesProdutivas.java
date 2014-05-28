@@ -42,7 +42,8 @@ import security.Usuario;
     + "];Obervações Adicionais[observacao]:2;[*dataDaCriacao;*dataDaModificacao],]",
      params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "localidade", value = "#{dataItem.localidade}")},
     template = "@CRUD_PAGE",    
-    roles="Administrador"),
+    roles="Administrador",
+    rows = 10),
     
 @View(name = "MUPUser",
     title = "Mapeamentos de Unidades Produtivas",
@@ -60,7 +61,8 @@ import security.Usuario;
     template = "@CRUD_PAGE",    
     roles="Tecnico",
     namedQuery="Select ot From MapeamentoDeUnidadesProdutivas ot where ot.tecnico = :tecnico",
-     params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "tecnico", value = "#{context.currentUser()}")}),
+     params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "tecnico", value = "#{context.currentUser()}")},
+     rows = 10),
 
 })
 

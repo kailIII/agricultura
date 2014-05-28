@@ -47,7 +47,8 @@ import security.Usuario;
         ,
     template="@CRUD_PAGE",    
       params = {@Param(name = "distrito", value = "#{dataItem.distrito}"),@Param(name = "localidade", value = "#{dataItem.localidade}")},
-    roles="Administrador"), 
+    roles="Administrador",
+    rows = 10), 
 
 @View(name="DDCUser",
     title="Diários de Campo",

@@ -38,7 +38,8 @@ import security.Usuario;
     + "         quantidadeDeToneladas;quantidadeDeMetrosLona;*usuarioQueModificou;*dataDaModificacao]]",
     template = "@CRUD_PAGE",  
     title = "Ordens De Serviço",
-    roles="Administrador,Tecnico")
+    roles="Administrador,Tecnico",
+    rows = 10)
 })
 public class OrdemDeServico implements Serializable {
     

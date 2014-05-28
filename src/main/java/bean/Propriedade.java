@@ -29,7 +29,8 @@ import org.hibernate.validator.constraints.NotEmpty;
             + "     nome,localidade"
             + "]",
             template = "@FORM+@CRUD+@PAGER",
-            roles = "Administrador")})
+            roles = "Administrador",
+            rows = 10)})
 public class Propriedade implements Serializable {
 
     @Id

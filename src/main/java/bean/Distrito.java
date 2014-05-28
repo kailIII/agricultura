@@ -31,7 +31,8 @@ import org.hibernate.validator.constraints.NotEmpty;
             + "     nome"
             + "]",
             template = "@FORM+@CRUD+@PAGER",
-            roles = "Administrador")})
+            roles = "Administrador",
+            rows = 10)})
 public class Distrito implements Serializable {
 
     private static final long serialVersionUID = 1L;
