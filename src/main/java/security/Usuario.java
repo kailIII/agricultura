@@ -126,7 +126,9 @@ public class Usuario implements Serializable, CurrentUser {
     
     @Lob
     @Column(length=10240) // 10kb
-    @Editor(propertyType=PropertyType.IMAGE)
+    @Editor(propertyType=PropertyType.IMAGE,
+			outputComponentProperties = {@Param(name="width", value="300"),
+							 	 		 @Param(name="lenght", value="300")})
     private byte[] foto;
     
     @NotEmpty(message = "É necessário informar o nome completo!")

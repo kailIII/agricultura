@@ -136,7 +136,9 @@ public class Produtor implements Serializable {
     // Campo de foto
     @Lob
     @Column(length=10240) // 10kb
-    @Editor(propertyType=PropertyType.IMAGE)
+    @Editor(propertyType=PropertyType.IMAGE,
+			outputComponentProperties = {@Param(name="width", value="300"),
+					 	 		 		 @Param(name="lenght", value="300")})
     private byte[] foto;
 
     @NotEmpty(message = "Informe o nome do Produtor")
